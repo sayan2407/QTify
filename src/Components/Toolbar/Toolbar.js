@@ -16,7 +16,7 @@ const Toolbar = () => {
         justifyContent: 'space-around'
     };
 
-    return  <AppBar position="static">
+    return  <AppBar style={{backgroundColor: '#34C94B', color: '#FFFFFF'}} position="static">
     <ToolBar style={toolbarStyle}>
       {/* Logo */}
       <div>
@@ -25,19 +25,21 @@ const Toolbar = () => {
       
       {/* Search Input */}
       <div>
-        <IconButton>
-          <SearchIcon />
-        </IconButton>
+       
         <InputBase
-          placeholder="Search…"
+          style={{border: '1px solid #000000', borderRadius: '0.5rem', padding: '0.2rem 0.5rem', background: 'white'}}
+          placeholder="Search a song"
           inputProps={{ 'aria-label': 'search' }}
         />
+         <IconButton>
+          <SearchIcon />
+        </IconButton>
       </div>
       
       {/* Button */}
       <div>
         <Button variant="contained" color="primary">
-          Your Button
+          Give Feedback
         </Button>
       </div>
     </ToolBar>
