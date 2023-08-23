@@ -1,0 +1,12 @@
+.followers {
+    padding: 0.5rem 0.9rem;
+    background-color: black;
+    color: white;
+    border-radius: 0.8rem;
+}
+
+.album_title {
+    text-align: left;
+    font-size: 1.3rem;
+    color: white;
+}

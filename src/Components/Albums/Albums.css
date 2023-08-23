@@ -1,0 +1,9 @@
+.album_category {
+    display: flex;
+    justify-content: space-between;
+}
+
+.album_heading {
+    color: white;
+    text-align: left;
+}

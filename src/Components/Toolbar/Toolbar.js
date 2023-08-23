@@ -6,6 +6,8 @@ import InputBase from '@mui/material/InputBase';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 
+import Logo from '../../assets/uploads/logo/Group 1.png';
+
 
 
 
@@ -20,7 +22,7 @@ const Toolbar = () => {
     <ToolBar style={toolbarStyle}>
       {/* Logo */}
       <div>
-        <img src="/path-to-your-logo.png" alt="Logo" />
+        <img src={Logo} alt="Logo" />
       </div>
       
       {/* Search Input */}
