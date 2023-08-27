@@ -12,11 +12,19 @@ import 'slick-carousel/slick/slick-theme.css';
 import { Card, CardContent, Typography } from '@mui/material';
 
 import "./Albums.css";
+import Generes from "../Generes/Generes";
+import Sliderview from "../Slider/Sliderview";
 
 
 const Albums = () => {
     const [ topSongs, setTopSongs ] = useState([]);
     const [ newSongs, setNewSongs ] = useState([]);
+
+    const [topSongShow, setTopSongShow] = useState(false);
+    const [newSongShow, setNewSongShow] = useState(false);
+
+    const [ generes, setGeneres ] = useState([]);
+    const [ allSongs, setAllSongs ] = useState([]);
 
 
     useEffect( ()=> {
@@ -24,54 +32,126 @@ const Albums = () => {
     }, [] )
 
     const fetchSongs = async () => {
+        const topSongsAPI = apis.top;
+        const newSongsAPI = apis.new;
+        const genresAPI = apis.genres
+        const allSongsAPI = apis.songs;
         try{
-            const topSongsAPI = apis.top;
-            const newSongsAPI = apis.new;
+        
+            const response = await axios.get(topSongsAPI)
+            .then(res=> {
+                return res
+            })
+            .catch(e=>{
+                alert('Erro!');
+            });
 
-            const response = await axios.get(topSongsAPI);
-
-            console.log('topSongs ', response.data);
+            // console.log('topSongs ', response.data);
             setTopSongs(response.data);
+     
 
-            const responseNewSongs = await axios.get(newSongsAPI);
+        
+            const responseNewSongs = await axios.get(newSongsAPI)
+            .then(res=>{
+                return res;
+            })
+            .catch(e=>{
+                alert('Error!');
+
+            });
             setNewSongs(responseNewSongs.data);
+    
 
-        }catch(e) {
-            console.log('Error: ', e);
+    
+            const generesData = await axios.get(genresAPI)
+            .then(res=>{
+                return res;
+            })
+            .catch(e=>{
+                alert('Error!');
+
+            });
+            // console.log('generesData ', generesData);
+            setGeneres( generesData.data.data );
+
+            const songsData = await axios.get(allSongsAPI)
+            .then(res=>{
+                return res;
+            })
+            .catch(e=>{
+                alert('Error!');
+
+            });
+            console.log('songsData ', songsData);
+            setAllSongs( songsData.data );
+        } catch(e) {
+            console.log('fetching error');
+
         }
+
+       
     }
 
     const settings = {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 5,
+        slidesToShow: 7,
         slidesToScroll: 1,
     };
+
+    const changeTopSongLayout = () => {
+        let currVal = topSongShow;
+        // console.log(currVal);
+        setTopSongShow( !currVal );
+    }
+
+    const changeNewSongLayout = () => {
+        let currVal = newSongShow;
+        // console.log(currVal);
+        setNewSongShow( !currVal );
+    }
     return <div className="custom_section">
         <div className="album_category">
             <h2 className="album_heading">Top Albums</h2>
-            <a href="#">Show All</a>
-
+            <span className="show_btn" onClick={changeTopSongLayout}> {topSongShow ? "Collapse All" : "Show All"} </span>
         </div>
-        <Slider {...settings}>
-        {topSongs.map(album=>(
-             <Albumcard key={album.id} albumDetails={album}/>
 
-        ))}
-        </Slider>
+        {
+            ( topSongShow ) ? (
+                <div className="display_songs">
+                     {topSongs.map(album=>(
+                     <Albumcard key={album.id} albumDetails={album}/>
+        
+                ))}
+                </div>
+            ) : (
+                <Sliderview itemsDetail = {topSongs}/>
+            )
+        }
+      
        
         <div className="album_category">
             <h2 className="album_heading">New Albums</h2>
-            <a href="#">Show All</a>
+            <span className="show_btn" onClick={changeNewSongLayout}> {newSongShow ? "Collapse All" : "Show All"} </span>
+            
 
         </div>
-        <Slider {...settings}>
-        {newSongs.map(album=>(
-             <Albumcard key={album.id} albumDetails={album}/>
+        {
+            ( newSongShow ) ? (
+                <div className="display_songs">
+                      {newSongs.map(album=>(
+                     <Albumcard key={album.id} albumDetails={album}/>
+        
+                ))}
+                </div>
+            ) : (
+                <Sliderview itemsDetail = {newSongs}/>
+            )
+        }
 
-        ))}
-        </Slider>
+        <Generes generes={generes} allSongs={ allSongs }/>
+      
       
        
 

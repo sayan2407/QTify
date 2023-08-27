@@ -6,8 +6,8 @@ const Albumcard = ({albumDetails}) => {
     const followers = 100;
     const cardTitle = "Hollywood Music";
 
-    return  <div>
-                <Card sx={{ maxWidth: 250 }}>
+    return  <div className='card_container'>
+                <Card sx={{ maxWidth: 300 }}>
               <CardActionArea>
                 <CardMedia
                   component="img"
