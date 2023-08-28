@@ -6,13 +6,20 @@ import Albums from './Components/Albums/Albums';
 import Faqs from './Components/Faqs/Faqs';
 // import { Toolbar } from '@mui/material';
 
+import { Routes, Route } from 'react-router-dom';
+import Dashboard from './Components/Dashboard/Dashboard';
+import Albumsongs from './Components/Albumsongs/Albumsongs';
+
 function App() {
   return (
     <div className="App">
       <Toolbar/>
-      <Herosection/>
-      <Albums/>
-      <Faqs/>
+      
+      <Routes>
+        <Route path="/" element={<Dashboard/>}></Route>
+        <Route path="/album/:slug" element={<Albumsongs/>}></Route>
+      </Routes>
+     
     </div>
   );
 }

@@ -1,0 +1,46 @@
+
+
+.album_dashboard_page {
+    margin: 1.2rem 2rem;
+    padding:1.2rem;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.album_dashboard {
+    margin: 1rem;
+    padding: 0.8rem;
+    display: flex;
+    color: white;
+    font-weight: 600;
+}
+
+.album_poster {
+    width: 70%;
+    height: 350px;
+    border-radius: 20px;
+}
+
+.album_dashboard_image {
+    display: flex;
+    flex: 1;
+}
+
+.album_dashboard_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 2;
+    text-align: left;
+}
+
+.album_btns button {
+    margin-right: 1rem;
+    border-radius: 10px;
+}
+
+
+/* .album_heading {
+    color: white;
+} */

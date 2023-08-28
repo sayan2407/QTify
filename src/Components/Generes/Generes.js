@@ -18,7 +18,6 @@ import Sliderview from '../Slider/Sliderview';
 const Generes = ({generes, allSongs}) => {
 
     console.log('allSongs=> ', allSongs);
-    const category = [];
 
   const [value, setValue] = useState("1");
 
@@ -46,22 +45,27 @@ const Generes = ({generes, allSongs}) => {
 
           </TabPanel>
           {
-                generes.map( (item, index)=>(
-                    // <Tab key={generes.key} label={generes.label} value={generes.key} />
-                      <TabPanel key={item.key} value={(index+2).toString()}>
-                        {
-                            allSongs.map(song=> {
-                                if (song.genre.key === item.key) {
-                                    category.push(song);
-                                }
-                            })
-                        }
-                        <Sliderview itemsDetail = {category}/>
-                      </TabPanel>
+                generes.map( (item, index)=>{
+                  // console.log('item_key ', item.key);
+                  const category = [];
+                  allSongs.map( song=> {
+                    // console.log('song_key ', song.genre.key);
+
+                    if (song.genre.key === item.key) {
+                        category.push(song);
+                    }
+                  });
+
+                  return (
+                    <TabPanel key={item.key} value={(index+2).toString()}>
+                      <Sliderview itemsDetail = {category}/>
+                    </TabPanel>
+                  )
 
 
-                ))
-              }
+                })
+          }
+  
         </TabContext>
         </Box>
     )

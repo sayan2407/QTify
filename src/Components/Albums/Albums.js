@@ -46,7 +46,7 @@ const Albums = () => {
                 alert('Erro!');
             });
 
-            // console.log('topSongs ', response.data);
+            console.log('topAlbums ', response.data);
             setTopSongs(response.data);
      
 
